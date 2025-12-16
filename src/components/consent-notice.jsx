@@ -223,12 +223,14 @@ export default class ConsentNotice extends React.Component {
                     manager={manager}
                 />
             );
-
+        const visibleHeader = t(['!', 'consentNotice', 'title']);
         const notice = (
             <div
                 role="dialog"
                 aria-describedby="id-cookie-notice"
-                aria-labelledby="id-cookie-title"
+                aria-labelledby={
+                    visibleHeader && config.showNoticeTitle ? 'id-cookie-title' : 'id-cookie-notice'
+                }
                 id="klaro-cookie-notice"
                 tabIndex="0"
                 autofocus={config.autoFocus}
@@ -242,7 +244,7 @@ export default class ConsentNotice extends React.Component {
                 }`}
             >
                 <div className="cn-body">
-                    {t(['!', 'consentNotice', 'title']) && config.showNoticeTitle && (
+                    {visibleHeader && config.showNoticeTitle && (
                         <h2 id="id-cookie-title">
                             {t(['consentNotice', 'title'])}
                         </h2>
